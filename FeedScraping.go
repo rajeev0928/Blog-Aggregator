@@ -79,35 +79,3 @@ func scrapeFeed(db *database.Queries, wg *sync.WaitGroup, feed database.Feed) {
 	log.Printf("Feed %s collected, %v posts found", feed.Name, len(feedData.Channel.Item))
 	fmt.Printf("Feed %s collected, %v posts found", feed.Name, len(feedData.Channel.Item))
 }
-// func scrapeFeed(db *database.Queries, wg *sync.WaitGroup, feed database.Feed) {
-// 	defer wg.Done()
-// 	_, err := db.MarkFeedFetched(context.Background(), feed.ID)
-// 	if err != nil {
-// 		log.Printf("Couldn't mark feed %s fetched: %v", feed.Name, err)
-// 		return
-// 	}
-// 	feedData, err := fetchFeed(feed.Url)
-// 	if err != nil {
-// 		log.Printf("Couldn't collect feed %s: %v", feed.Name, err)
-// 		return
-// 	}
-// 	post ,err := db.CreatePost(context.Background(),database.CreatePostParams{
-// 		id:        uuid.New(),
-// 		created_at: time.Now().UTC(),
-// 		updated_at: time.Now().UTC(),
-// 		title:      feedData.Channel.Item.Title,
-// 		Url   : feed.Url,
-// 		description: feedData.Channel.Item.Description,
-// 		published_at: feedData.Channel.Item.PubDate,
-// 		feed_id : feed.ID,
-// 	})
-// 	if err!=nil{
-// 		log.Printf("Couldn't save post feed %s: %v", feed.Name, err)
-// 		return
-// 	}
-	
-// 	for _, item := range feedData.Channel.Item {
-// 		log.Println("Found post", item.Title)
-// 	}
-// 	log.Printf("Feed %s collected, %v posts found", feed.Name, len(feedData.Channel.Item))
-// }
